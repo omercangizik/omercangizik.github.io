@@ -56,7 +56,110 @@ const projects = [
     featured: true,
   },
 
-  
+  {
+    title: "TÜBİTAK Tedarikçi Seçiminde Makine Öğrenmesi ve Veri Madenciliği Yaklaşımı",
+    description:
+    "Bu projede, otomotiv sektöründeki oto tamir firmalarının tedarikçi seçim sürecini daha hızlı, verimli ve objektif hale getirmek amacıyla veri madenciliği ve makine öğrenmesi teknikleri kullanılmıştır. Oto tamircilerinden anket yoluyla toplanan veriler analiz edilerek tedarikçi performansını etkileyen kriterler belirlenmiş ve bu verilerle farklı makine öğrenmesi modelleri eğitilmiştir. Yapılan karşılaştırmalar sonucunda en yüksek doğruluk oranını sağlayan model kullanılarak tedarikçi önerisi yapabilen bir karar destek yaklaşımı geliştirilmiştir.",  
+    type: "frontend",
+    tech: ["Microsoft Excel, Python, Machine Learning, Data Mining"],
+    liveUrl: "#",
+    githubUrl: "#",
+    images: [
+      "gorseller/kds1.jpg",
+      "gorseller/kds2.jpg",
+      "gorseller/kds3.jpg",
+      "gorseller/kds4.jpg",
+      "gorseller/kds5.jpg",
+      "gorseller/kds6.jpg",
+      "gorseller/kds7.jpg",
+      "gorseller/kds8.jpg",
+    ],
+    pdfUrl: "pdfler/TÜBİTAK_guncel.ipynb - Colab.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
+  {
+    title: "MYSQL veritabanı tasarımı ve sorguları",
+    description:
+    "Veritabanı dersinde yaptığım bu projede müşteriler, ürünler, firmalar ve kategorilerden oluşan bir veritabanı tasarlanmıştır. Veritabanı, bir satıcının satış ve alış işlemlerini düzenli bir şekilde takip edebilmesini ve yönetebilmesini amaçlamaktadır. Sistem içerisinde müşterilerin bilgileri, ürünlerin özellikleri, ürünleri üreten firmalar ve ürün kategorileri tutulmaktadır. Ayrıca veritabanında veri ekleme, silme, güncelleme ve çeşitli sorgulamalar yapabilmek için saklı yordamlar (stored procedures) ve görünümler (views) oluşturulmuştur. Bu sayede satış verileri daha kolay analiz edilebilir ve yönetilebilir hale getirilmiştir.",
+    type: "frontend",
+    tech: ["MYSQL"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: "gorseller/veritabani.png",
+    pdfUrl: "pdfler/veritabani.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
+
+  {
+    title: "Aykırı Değer Analizi",
+    description:
+    "Bu çalışmada su kalitesi verileri kullanılarak aykırı gözlem analizi yapılmıştır. Veri seti Python, Pandas ve Seaborn kütüphaneleri kullanılarak incelenmiş ve özellikle Turbidity (bulanıklık) değişkeni üzerinden aykırı değerler tespit edilmiştir. Aykırı değerleri belirlemek için IQR yöntemi ve Local Outlier Factor (LOF) algoritması kullanılmıştır. Tespit edilen aykırı değerler ise silme, ortalama ile doldurma ve baskılama yöntemleri gibi farklı tekniklerle düzeltilmiştir.",
+
+    type: "frontend",
+    tech: ["Python, Pandas, Seaborn"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: "",
+    pdfUrl: "pdfler/aykiri-gozlem-analizi (1).pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
+
+
+  {
+    title: "Eksik Gözlem Analizi",
+    description:
+    "Bu projede, bir veri seti üzerinde eksik veri analizi gerçekleştirilmiştir. Python programlama dili kullanılarak veri seti yüklenmiş ve içerisindeki eksik değerler tespit edilmiştir. Eksik verilerin dağılımı ve yapısı çeşitli görselleştirme yöntemleri ile incelenmiştir. Ardından eksik veriler için farklı yöntemler uygulanmıştır. Bu yöntemler arasında eksik verilerin silinmesi, ortalama veya sabit değer ile doldurulması ve kategorik değişkenlere göre değer atanması bulunmaktadır. Projenin amacı, veri setindeki eksik bilgileri analiz ederek veri temizleme ve veri ön işleme süreçlerini uygulamalı olarak göstermektir.",
+
+    type: "frontend",
+    tech: ["Python, Pandas, Seaborn"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: "",
+    pdfUrl: "pdfler/eksik-gozlem-analizi-1.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
+  {
+    title: "To-Do List Uygulaması",
+    description:
+    "Bu uygulama, günlük görevlerinizi kolayca yönetebilmeniz için geliştirilmiş basit birgörev takip sistemidir. Uygulama sayesinde yapılacak işlerinizi ekleyebilir, öncelikbelirleyebilir, tamamlanan görevleri işaretleyebilir, düzenleyebilir ve silebilirsiniz. Tümgörevler otomatik olarak bir dosyaya kaydedilir, böylece uygulamayı kapatsanız bilebilgileriniz kaybolmaz.",
+    type: "frontend",
+    tech: ["Python"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: "",
+    pdfUrl: "pdfler/To_Do_List.ipynb - Colab.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
   
 ];
 
@@ -75,12 +178,18 @@ const modalProjectTech = document.getElementById("modal-project-tech");
 const modalProjectLinks = document.getElementById("modal-project-links");
 const modalProjectImageWrapper = document.getElementById("modal-project-image-wrapper");
 const modalProjectImage = document.getElementById("modal-project-image");
+const modalProjectImageTitle = document.getElementById("modal-project-image-title");
 const modalProjectCodeWrapper = document.getElementById("modal-project-code-wrapper");
 const modalProjectCode = document.getElementById("modal-project-code");
 const modalProjectPdfWrapper = document.getElementById("modal-project-pdf-wrapper");
 const modalProjectPdf = document.getElementById("modal-project-pdf");
 const imageLightbox = document.getElementById("image-lightbox");
 const imageLightboxImg = document.getElementById("image-lightbox-img");
+const modalImagePrev = document.getElementById("modal-image-prev");
+const modalImageNext = document.getElementById("modal-image-next");
+
+let currentProject = null;
+let currentImageIndex = 0;
 
 function renderProjects() {
   if (!projectsGrid) return;
@@ -159,6 +268,9 @@ function setCurrentProject() {
 function openProjectModal(project) {
   if (!projectModal) return;
 
+  currentProject = project;
+  currentImageIndex = 0;
+
   if (modalProjectTitle) modalProjectTitle.textContent = project.title;
   if (modalProjectDesc) modalProjectDesc.textContent = project.description;
   if (modalProjectLong) {
@@ -197,17 +309,7 @@ function openProjectModal(project) {
     }
   }
 
-  if (modalProjectImageWrapper && modalProjectImage) {
-    const hasImage = project.imageUrl && project.imageUrl.trim() !== "";
-
-    if (hasImage) {
-      modalProjectImage.src = project.imageUrl;
-      modalProjectImageWrapper.classList.remove("hidden");
-    } else {
-      modalProjectImageWrapper.classList.add("hidden");
-      modalProjectImage.src = "";
-    }
-  }
+  updateProjectImage();
 
   if (modalProjectCodeWrapper && modalProjectCode) {
     if (project.code && project.code.trim() !== "") {
@@ -237,6 +339,51 @@ function closeProjectModal() {
   if (!projectModal) return;
   projectModal.classList.add("hidden");
   document.body.classList.remove("modal-open");
+}
+
+function getProjectImages() {
+  if (!currentProject) return [];
+
+  if (Array.isArray(currentProject.images) && currentProject.images.length > 0) {
+    return currentProject.images;
+  }
+
+  if (currentProject.imageUrl && currentProject.imageUrl.trim() !== "") {
+    return [currentProject.imageUrl];
+  }
+
+  return [];
+}
+
+function updateProjectImage() {
+  if (!modalProjectImageWrapper || !modalProjectImage) return;
+
+  const images = getProjectImages();
+
+  if (images.length === 0) {
+    if (modalProjectImageTitle) {
+      modalProjectImageTitle.classList.add("hidden");
+    }
+    modalProjectImageWrapper.classList.add("hidden");
+    modalProjectImage.src = "";
+    return;
+  }
+
+  if (modalProjectImageTitle) {
+    modalProjectImageTitle.classList.remove("hidden");
+  }
+  if (currentImageIndex < 0) currentImageIndex = 0;
+  if (currentImageIndex >= images.length) currentImageIndex = images.length - 1;
+
+  modalProjectImage.src = images[currentImageIndex];
+  modalProjectImageWrapper.classList.remove("hidden");
+
+  if (modalImagePrev) {
+    modalImagePrev.style.display = images.length > 1 ? "inline-flex" : "none";
+  }
+  if (modalImageNext) {
+    modalImageNext.style.display = images.length > 1 ? "inline-flex" : "none";
+  }
 }
 
 function openImageLightbox(src) {
@@ -309,6 +456,28 @@ document.addEventListener("DOMContentLoaded", () => {
         closeImageLightbox();
       }
     });
+  }
+
+  if (modalImagePrev || modalImageNext) {
+    if (modalImagePrev) {
+      modalImagePrev.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const images = getProjectImages();
+        if (images.length === 0) return;
+        currentImageIndex = (currentImageIndex - 1 + images.length) % images.length;
+        updateProjectImage();
+      });
+    }
+
+    if (modalImageNext) {
+      modalImageNext.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const images = getProjectImages();
+        if (images.length === 0) return;
+        currentImageIndex = (currentImageIndex + 1) % images.length;
+        updateProjectImage();
+      });
+    }
   }
 });
 
