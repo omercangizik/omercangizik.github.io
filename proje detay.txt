@@ -1,0 +1,46 @@
+<!-- Proje Detay Modali -->
+  <div id="project-modal" class="project-modal hidden">
+    <div class="project-modal-backdrop" data-close="modal"></div>
+    <div class="project-modal-content">
+      <button class="project-modal-close" data-close="modal" aria-label="Kapat">✕</button>
+      <div class="project-modal-body">
+        <div class="project-modal-text">
+          <h2 id="modal-project-title"></h2>
+          <p id="modal-project-desc"></p>
+          <p id="modal-project-long" class="project-modal-long"></p>
+          <div class="project-modal-tech-wrapper">
+            <h3>Kullanılan Teknolojiler</h3>
+            <div id="modal-project-tech" class="project-modal-tech"></div>
+          </div>
+          <div id="modal-project-code-wrapper" class="project-modal-code-wrapper hidden">
+            <h3>Kod Örneği</h3>
+            <pre><code id="modal-project-code" class="project-modal-code"></code></pre>
+          </div>
+          <div class="project-modal-links" id="modal-project-links"></div>
+        </div>
+        <div class="project-modal-media">
+          <h3 class="project-modal-media-title">Proje Görseli</h3>
+          <div id="modal-project-image-wrapper" class="project-modal-image-wrapper hidden">
+            <img id="modal-project-image" src="" alt="Proje görseli" />
+          </div>
+          <p id="modal-project-image-note" class="project-modal-image-note">
+            İstersen her proje için bir veya birden fazla ekran görüntüsünü buraya ekleyebilirsin.
+          </p>
+        </div>
+      </div>
+      <div id="modal-project-pdf-wrapper" class="project-modal-pdf-section hidden">
+        <h3 class="project-modal-pdf-title">PDF Dokümanı</h3>
+        <p class="project-modal-pdf-note">
+          Proje ile ilgili detaylı rapor, döküman veya çıktı dosyasını aşağıdaki alanda inceleyebilirsin.
+        </p>
+        <div class="project-modal-pdf-wrapper-inner">
+          <iframe
+            id="modal-project-pdf"
+            class="project-modal-pdf"
+            src=""
+            title="Proje PDF önizlemesi"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolyo | Projelerim</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <!--<span class="brand-logo">OC</span>-->
+        <div class="brand-text">
+          <h1>Ömer Can Gizik</h1>
+          <p>Veri Analizi / Raporlama</p>
+        </div>
+      </div>
+      <nav class="nav">
+        <a href="#projects">Projeler</a>
+        <a href="#about">Hakkımda</a>
+        <a href="#contact">İletişim</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow">Portfolyo</p>
+          <h2>Üzerinde Çalıştığım Projeler</h2>
+          <p class="subtitle">
+            Aşağıda, geliştirdiğim projeleri bulabilirsin.
+          </p>
+          <div class="hero-actions">
+            <a href="#projects" class="btn primary">Projeleri Gör</a>
+            <a href="#contact" class="btn ghost">Benimle İletişime Geç</a>
+          </div>
+        </div>
+        <!--<div class="hero-card">
+          <p class="hero-tag">Şu an üzerinde çalıştığım</p>
+          <h3 id="current-project-title">Proje ismi yüklüyor...</h3>
+          <p id="current-project-desc">Proje açıklaması yüklüyor...</p>
+        </div>-->
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Projelerim</h2>
+         
+        </div>
+
+        <div id="projects-grid" class="projects-grid">
+          <!-- Projeler script.js ile eklenecek -->
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section muted">
+      <div class="container about-grid">
+        <div>
+          <h2>Hakkımda</h2>
+          <p>
+            Yönetim Bilişim Sistemleri mezunuyum ve veri analizi, makine öğrenmesi ve iş zekâsı alanlarına ilgi duyuyorum. 
+            Üniversite sürecinde Excel, Power BI, Python ve SQL kullanarak veri analizi ve dashboard projeleri geliştirerek
+            teorik bilgilerimi pratik uygulamalarla pekiştirdim.
+            <p>TÜBİTAK destekli projede proje yöneticiliği yaparak
+            makine öğrenmesi ve veri madenciliği yöntemlerini tedarikçi seçimi problemine uyguladım. 
+            Analitik düşünme yeteneğim ve öğrenmeye açık yapım ile veri odaklı çözümler geliştirebileceğim 
+            pozisyonlarda kendimi geliştirmeyi hedefliyorum.</p>
+          </p>
+        </div>
+        <ul class="skills">
+            <li>Python (Veri Analizi)</li>
+            <li>SQL / MySQL</li>
+            <li>Microsoft Excel</li>
+            <li>Power BI (Dashboard Tasarımı)</li>
+            <li>Veri Görselleştirme</li>
+            <li>Veri Ön İşleme</li>
+            <li>Makine Öğrenmesi Temelleri</li>
+            <li>Veri Analizi ve Raporlama</li>
+            <li>Git / GitHub</li>
+            <li>Problem Çözme ve Analitik Düşünme</li>
+            
+        </ul>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container contact">
+        <div>
+          <h2>İletişim</h2>
+          <p>
+            Benimle bu kanallar üzerinden iletişime geçebilirsin.
+          </p>
+        </div>
+        <div class="contact-actions">
+          <a href="mailto:gizikomer441@mail.com" class="btn primary">Mail Gönder</a>
+           <a href="https://www.linkedin.com/in/%C3%B6mer-can-gizik-723640224" target="_blank" class="btn ghost">LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Ömer Can Gizik</span>
+    </div>
+  </footer>
+
+  <!-- Proje Detay Modali -->
+  <div id="project-modal" class="project-modal hidden">
+    <div class="project-modal-backdrop" data-close="modal"></div>
+    <div class="project-modal-content">
+      <button class="project-modal-close" data-close="modal" aria-label="Kapat">✕</button>
+      <div class="project-modal-body">
+        <div class="project-modal-text">
+          <h2 id="modal-project-title"></h2>
+          <p id="modal-project-desc"></p>
+          <p id="modal-project-long" class="project-modal-long"></p>
+          <div class="project-modal-tech-wrapper">
+            <h3>Kullanılan Teknolojiler</h3>
+            <div id="modal-project-tech" class="project-modal-tech"></div>
+          </div>
+          
+          <div class="project-modal-links" id="modal-project-links"></div>
+        </div>
+        <div class="project-modal-media">
+          <h3 class="project-modal-media-title">Proje Görseli</h3>
+          <div id="modal-project-image-wrapper" class="project-modal-image-wrapper hidden">
+            <img id="modal-project-image" src="" alt="Proje görseli" />
+          </div>
+          <p id="modal-project-image-note" class="project-modal-image-note">
+            
+          </p>
+        </div>
+      </div>
+      <div id="modal-project-pdf-wrapper" class="project-modal-pdf-section hidden">
+        <h3 class="project-modal-pdf-title">PDF Dokümanı</h3>
+        <p class="project-modal-pdf-note">
+          Proje ile ilgili detaylı rapor, döküman veya çıktı dosyasını aşağıdaki alanda inceleyebilirsin.
+        </p>
+        <div class="project-modal-pdf-wrapper-inner">
+          <iframe
+            id="modal-project-pdf"
+            class="project-modal-pdf"
+            src=""
+            title="Proje PDF önizlemesi"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Görsel Büyütme (Lightbox) -->
+  <div id="image-lightbox" class="image-lightbox hidden" data-close="image-lightbox">
+    <div class="image-lightbox-backdrop" data-close="image-lightbox"></div>
+    <div class="image-lightbox-inner">
+      <button class="image-lightbox-close" data-close="image-lightbox" aria-label="Görseli kapat">✕</button>
+      <img id="image-lightbox-img" src="" alt="Büyük proje görseli" />
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+
