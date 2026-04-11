@@ -838,7 +838,8 @@ body.modal-open {
   }
 
   .project-modal-pdf {
-    height: 300px;
+    height: 50vh;
+    min-height: 400px;
   }
 }
 

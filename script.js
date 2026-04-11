@@ -344,25 +344,13 @@ function openProjectModal(project) {
 
   if (modalProjectPdfWrapper && modalProjectPdf) {
     if (project.pdfUrl && project.pdfUrl.trim() !== "") {
-      if (isMobileDevice()) {
-        // Mobil cihazlarda PDF'yi embed etmeyip indirme linki göster
-        modalProjectPdf.src = "";
-        modalProjectPdf.style.display = "none";
-        const downloadLink = document.getElementById("modal-project-pdf-download");
-        if (downloadLink) {
-          downloadLink.href = project.pdfUrl;
-          downloadLink.style.display = "inline-block";
-        }
-      } else {
-        // Masaüstü cihazlarda iframe ile göster
-        modalProjectPdf.src = project.pdfUrl;
-        modalProjectPdf.style.display = "block";
-        const downloadLink = document.getElementById("modal-project-pdf-download");
-        if (downloadLink) {
-          downloadLink.style.display = "none";
-        }
-      }
+      modalProjectPdf.src = project.pdfUrl;
       modalProjectPdfWrapper.classList.remove("hidden");
+      const downloadLink = document.getElementById("modal-project-pdf-download");
+      if (downloadLink) {
+        downloadLink.href = project.pdfUrl;
+        downloadLink.style.display = "block"; // Her zaman göster, indirme seçeneği olarak
+      }
     } else {
       modalProjectPdfWrapper.classList.add("hidden");
       modalProjectPdf.src = "";
