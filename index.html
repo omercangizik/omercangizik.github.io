@@ -151,7 +151,31 @@
         <p class="project-modal-pdf-note">
           Proje ile ilgili detaylı rapor, döküman veya çıktı dosyasını aşağıdaki alanda inceleyebilirsin.
         </p>
-        <div class="project-modal-pdf-wrapper-inner">
+        <div class="project-modal-pdf-toolbar" id="modal-project-pdf-toolbar">
+          <a
+            id="modal-project-pdf-open"
+            class="btn ghost project-modal-pdf-action"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+          >Yeni sekmede aç</a>
+          <a
+            id="modal-project-pdf-download"
+            class="btn ghost project-modal-pdf-action"
+            href="#"
+            download
+          >İndir</a>
+        </div>
+        <p class="project-modal-pdf-mobile-hint" id="modal-project-pdf-mobile-hint" hidden>
+          Bu cihazda önizleme sınırlı olabilir. PDF’yi tam ekran ve kaydırmalı görmek için «Yeni sekmede aç» veya «İndir» kullan.
+        </p>
+        <div class="project-modal-pdf-ios-panel" id="modal-project-pdf-ios-panel" hidden>
+          <p class="project-modal-pdf-ios-lead">Bu cihazda PDF genelde sayfa içinde açılmaz.</p>
+          <p class="project-modal-pdf-ios-text">
+            Tam ekran görüntüleyici için «Yeni sekmede aç»a dokunun; çevrimdışı okumak için «İndir» kullanabilirsin.
+          </p>
+        </div>
+        <div class="project-modal-pdf-wrapper-inner" id="modal-project-pdf-iframe-wrap">
           <iframe
             id="modal-project-pdf"
             class="project-modal-pdf"

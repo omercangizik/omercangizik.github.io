@@ -647,12 +647,71 @@ body {
   color: var(--muted);
 }
 
+.project-modal-pdf-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 0.65rem;
+  margin-top: 0.35rem;
+}
+
+.project-modal-pdf-action {
+  min-height: 44px;
+  padding-inline: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: manipulation;
+}
+
+.project-modal-pdf-mobile-hint {
+  margin: 0.4rem 0 0;
+  font-size: 0.78rem;
+  line-height: 1.45;
+  color: var(--muted);
+}
+
+.project-modal-pdf-ios-panel {
+  margin-top: 0.5rem;
+  padding: 1rem 1.1rem;
+  border-radius: 16px;
+  background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.1), transparent 55%),
+    rgba(15, 23, 42, 0.95);
+  border: 1px solid rgba(129, 140, 248, 0.45);
+}
+
+.project-modal-pdf-ios-lead {
+  margin: 0 0 0.35rem;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e5e7eb;
+}
+
+.project-modal-pdf-ios-text {
+  margin: 0;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
 .project-modal-pdf-wrapper-inner {
   border-radius: 18px;
   overflow: hidden;
   background: #020617;
   border: 1px solid rgba(148, 163, 184, 0.8);
   min-height: 360px;
+  -webkit-overflow-scrolling: touch;
+}
+
+.project-modal-pdf-wrapper-inner[hidden] {
+  display: none !important;
+}
+
+.project-modal-pdf-ios-panel[hidden] {
+  display: none !important;
+}
+
+.project-modal-pdf-mobile-hint[hidden] {
+  display: none !important;
 }
 
 .project-modal-pdf {
@@ -660,6 +719,7 @@ body {
   height: 480px;
   border: none;
   display: block;
+  background: #0f172a;
 }
 
 .project-modal-image-wrapper {
@@ -837,9 +897,32 @@ body.modal-open {
     align-items: flex-start;
   }
 
+  .project-modal-content {
+    max-height: calc(100vh - 1.25rem);
+    max-height: calc(100dvh - 1.25rem);
+    margin-inline: 0.75rem;
+  }
+
+  .project-modal {
+    padding: 0.75rem 0;
+    align-items: stretch;
+  }
+
+  .project-modal-pdf-section {
+    padding-inline: 1.1rem;
+    padding-bottom: 1.25rem;
+  }
+
+  .project-modal-pdf-wrapper-inner {
+    min-height: 280px;
+    min-height: min(52dvh, 320px);
+  }
+
   .project-modal-pdf {
-    height: 50vh;
-    min-height: 400px;
+    height: 68vh;
+    height: min(68dvh, 560px);
+    min-height: 260px;
+    max-height: none;
   }
 }
 

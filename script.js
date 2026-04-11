@@ -199,6 +199,21 @@ const modalProjectCodeWrapper = document.getElementById("modal-project-code-wrap
 const modalProjectCode = document.getElementById("modal-project-code");
 const modalProjectPdfWrapper = document.getElementById("modal-project-pdf-wrapper");
 const modalProjectPdf = document.getElementById("modal-project-pdf");
+const modalProjectPdfOpen = document.getElementById("modal-project-pdf-open");
+const modalProjectPdfDownload = document.getElementById("modal-project-pdf-download");
+const modalProjectPdfIframeWrap = document.getElementById("modal-project-pdf-iframe-wrap");
+const modalProjectPdfMobileHint = document.getElementById("modal-project-pdf-mobile-hint");
+const modalProjectPdfIosPanel = document.getElementById("modal-project-pdf-ios-panel");
+
+function isLikelyIOS() {
+  const ua = navigator.userAgent || "";
+  if (/iPad|iPhone|iPod/i.test(ua)) return true;
+  return navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+}
+
+function pdfEmbedProblematic() {
+  return isLikelyIOS() || window.matchMedia("(max-width: 640px)").matches;
+}
 const imageLightbox = document.getElementById("image-lightbox");
 const imageLightboxImg = document.getElementById("image-lightbox-img");
 const modalImagePrev = document.getElementById("modal-image-prev");
@@ -339,11 +354,43 @@ function openProjectModal(project) {
 
   if (modalProjectPdfWrapper && modalProjectPdf) {
     if (project.pdfUrl && project.pdfUrl.trim() !== "") {
-      modalProjectPdf.src = project.pdfUrl;
+      const url = project.pdfUrl.trim();
       modalProjectPdfWrapper.classList.remove("hidden");
+
+      const fileName = url.split("/").pop() || "proje.pdf";
+      if (modalProjectPdfOpen) modalProjectPdfOpen.href = url;
+      if (modalProjectPdfDownload) {
+        modalProjectPdfDownload.href = url;
+        modalProjectPdfDownload.setAttribute("download", fileName);
+      }
+
+      const useNative = isLikelyIOS();
+      modalProjectPdfWrapper.classList.toggle("project-modal-pdf--ios", useNative);
+      const showHint = pdfEmbedProblematic();
+      if (modalProjectPdfMobileHint) {
+        modalProjectPdfMobileHint.hidden = !showHint;
+      }
+      if (modalProjectPdfIosPanel) {
+        modalProjectPdfIosPanel.hidden = !useNative;
+      }
+      if (modalProjectPdfIframeWrap) {
+        modalProjectPdfIframeWrap.hidden = useNative;
+      }
+      if (useNative) {
+        modalProjectPdf.removeAttribute("src");
+        modalProjectPdf.src = "";
+      } else {
+        modalProjectPdf.src = url;
+      }
     } else {
       modalProjectPdfWrapper.classList.add("hidden");
+      modalProjectPdfWrapper.classList.remove("project-modal-pdf--ios");
       modalProjectPdf.src = "";
+      if (modalProjectPdfIframeWrap) modalProjectPdfIframeWrap.hidden = false;
+      if (modalProjectPdfMobileHint) modalProjectPdfMobileHint.hidden = true;
+      if (modalProjectPdfIosPanel) modalProjectPdfIosPanel.hidden = true;
+      if (modalProjectPdfOpen) modalProjectPdfOpen.removeAttribute("href");
+      if (modalProjectPdfDownload) modalProjectPdfDownload.removeAttribute("href");
     }
   }
 
