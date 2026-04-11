@@ -244,8 +244,10 @@ function resetPdfModalViewer() {
     modalProjectPdf.classList.add("hidden");
   }
   if (modalPdfCanvas) {
-    const ctx = modalPdfCanvas.getContext("2d");
-    if (ctx) ctx.clearRect(0, 0, modalPdfCanvas.width, modalPdfCanvas.height);
+    modalPdfCanvas.width = 0;
+    modalPdfCanvas.height = 0;
+    modalPdfCanvas.style.width = "";
+    modalPdfCanvas.style.height = "";
     modalPdfCanvas.classList.add("hidden");
   }
   if (modalPdfStatus) {
@@ -322,10 +324,15 @@ async function renderPdfModalPage(pageNum) {
     const cw = Math.max(modalPdfCanvasWrap.clientWidth - pad * 2, 64);
     const baseVp = page.getViewport({ scale: 1 });
     const scale = cw / baseVp.width;
-    const viewport = page.getViewport({ scale });
+    const dpr = Math.min(window.devicePixelRatio || 1, 3);
+    const viewport = page.getViewport({ scale: scale * dpr });
 
-    canvas.width = viewport.width;
-    canvas.height = viewport.height;
+    const w = Math.floor(viewport.width);
+    const h = Math.floor(viewport.height);
+    canvas.width = w;
+    canvas.height = h;
+    canvas.style.width = `${Math.round(w / dpr)}px`;
+    canvas.style.height = `${Math.round(h / dpr)}px`;
 
     const renderContext = { canvasContext: ctx, viewport };
     pdfModalRenderTask = page.render(renderContext);

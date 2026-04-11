@@ -730,7 +730,6 @@ body {
 .project-modal-pdf-canvas {
   display: block;
   max-width: 100%;
-  height: auto !important;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
 }
 
