@@ -202,17 +202,209 @@ const modalProjectPdf = document.getElementById("modal-project-pdf");
 const modalProjectPdfOpen = document.getElementById("modal-project-pdf-open");
 const modalProjectPdfDownload = document.getElementById("modal-project-pdf-download");
 const modalProjectPdfIframeWrap = document.getElementById("modal-project-pdf-iframe-wrap");
-const modalProjectPdfMobileHint = document.getElementById("modal-project-pdf-mobile-hint");
-const modalProjectPdfIosPanel = document.getElementById("modal-project-pdf-ios-panel");
+const modalProjectPdfViewer = document.getElementById("modal-project-pdf-viewer");
+const modalPdfCanvas = document.getElementById("modal-project-pdf-canvas");
+const modalPdfCanvasWrap = document.getElementById("modal-project-pdf-canvas-wrap");
+const modalPdfPrev = document.getElementById("modal-pdf-prev");
+const modalPdfNext = document.getElementById("modal-pdf-next");
+const modalPdfPageLabel = document.getElementById("modal-pdf-page-label");
+const modalPdfStatus = document.getElementById("modal-pdf-status");
 
-function isLikelyIOS() {
-  const ua = navigator.userAgent || "";
-  if (/iPad|iPhone|iPod/i.test(ua)) return true;
-  return navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1;
+let pdfModalLoadGen = 0;
+let pdfModalDoc = null;
+let pdfModalPageNum = 1;
+let pdfModalRenderTask = null;
+let pdfModalLoadingTask = null;
+
+function resetPdfModalViewer() {
+  pdfModalLoadGen += 1;
+  pdfModalDoc = null;
+  pdfModalPageNum = 1;
+
+  if (pdfModalRenderTask) {
+    try {
+      pdfModalRenderTask.cancel();
+    } catch {
+      /* ignore */
+    }
+    pdfModalRenderTask = null;
+  }
+
+  if (pdfModalLoadingTask) {
+    try {
+      pdfModalLoadingTask.destroy();
+    } catch {
+      /* ignore */
+    }
+    pdfModalLoadingTask = null;
+  }
+
+  if (modalProjectPdf) {
+    modalProjectPdf.src = "";
+    modalProjectPdf.classList.add("hidden");
+  }
+  if (modalPdfCanvas) {
+    const ctx = modalPdfCanvas.getContext("2d");
+    if (ctx) ctx.clearRect(0, 0, modalPdfCanvas.width, modalPdfCanvas.height);
+    modalPdfCanvas.classList.add("hidden");
+  }
+  if (modalPdfStatus) {
+    modalPdfStatus.textContent = "";
+    modalPdfStatus.classList.add("hidden");
+  }
+  if (modalPdfPageLabel) modalPdfPageLabel.textContent = "—";
+  if (modalPdfPrev) modalPdfPrev.disabled = true;
+  if (modalPdfNext) modalPdfNext.disabled = true;
+  if (modalProjectPdfViewer) {
+    modalProjectPdfViewer.classList.remove("hidden");
+    modalProjectPdfViewer.classList.remove("project-modal-pdf-viewer--fallback");
+  }
 }
 
-function pdfEmbedProblematic() {
-  return isLikelyIOS() || window.matchMedia("(max-width: 640px)").matches;
+function updatePdfModalNav() {
+  const total = pdfModalDoc ? pdfModalDoc.numPages : 0;
+  if (modalPdfPageLabel) {
+    modalPdfPageLabel.textContent =
+      total > 0 ? `Sayfa ${pdfModalPageNum} / ${total}` : "—";
+  }
+  if (modalPdfPrev) modalPdfPrev.disabled = !pdfModalDoc || pdfModalPageNum <= 1;
+  if (modalPdfNext) {
+    modalPdfNext.disabled = !pdfModalDoc || pdfModalPageNum >= total;
+  }
+}
+
+function showPdfModalFallback(url) {
+  if (modalProjectPdfViewer) {
+    modalProjectPdfViewer.classList.remove("hidden");
+    modalProjectPdfViewer.classList.add("project-modal-pdf-viewer--fallback");
+  }
+  if (modalProjectPdf) {
+    modalProjectPdf.src = url;
+    modalProjectPdf.classList.remove("hidden");
+  }
+  if (modalPdfStatus) {
+    modalPdfStatus.textContent =
+      "Önizleyici yüklenemedi; aşağıdaki çerçeveyi veya «Yeni sekmede aç» bağlantısını kullan.";
+    modalPdfStatus.classList.remove("hidden");
+  }
+}
+
+let pdfModalPageRendering = false;
+
+async function renderPdfModalPage(pageNum) {
+  if (!pdfModalDoc || !modalPdfCanvas || !modalPdfCanvasWrap) return;
+  if (pageNum < 1 || pageNum > pdfModalDoc.numPages) return;
+
+  const genAtStart = pdfModalLoadGen;
+
+  if (modalPdfPrev) modalPdfPrev.disabled = true;
+  if (modalPdfNext) modalPdfNext.disabled = true;
+  pdfModalPageRendering = true;
+
+  if (pdfModalRenderTask) {
+    try {
+      pdfModalRenderTask.cancel();
+    } catch {
+      /* ignore */
+    }
+    pdfModalRenderTask = null;
+  }
+
+  try {
+    const page = await pdfModalDoc.getPage(pageNum);
+    if (genAtStart !== pdfModalLoadGen) return;
+
+    const canvas = modalPdfCanvas;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    const pad = 12;
+    const cw = Math.max(modalPdfCanvasWrap.clientWidth - pad * 2, 64);
+    const baseVp = page.getViewport({ scale: 1 });
+    const scale = cw / baseVp.width;
+    const viewport = page.getViewport({ scale });
+
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+
+    const renderContext = { canvasContext: ctx, viewport };
+    pdfModalRenderTask = page.render(renderContext);
+
+    try {
+      await pdfModalRenderTask.promise;
+    } catch (err) {
+      if (err && err.name === "RenderingCancelledException") return;
+      throw err;
+    } finally {
+      pdfModalRenderTask = null;
+    }
+
+    if (genAtStart !== pdfModalLoadGen) return;
+
+    pdfModalPageNum = pageNum;
+    if (modalPdfStatus) modalPdfStatus.classList.add("hidden");
+    canvas.classList.remove("hidden");
+  } finally {
+    pdfModalPageRendering = false;
+    updatePdfModalNav();
+  }
+}
+
+async function openPdfModal(url) {
+  resetPdfModalViewer();
+  const myGen = pdfModalLoadGen;
+
+  if (modalPdfStatus) {
+    modalPdfStatus.textContent = "Yükleniyor…";
+    modalPdfStatus.classList.remove("hidden");
+  }
+  if (modalPdfCanvas) modalPdfCanvas.classList.add("hidden");
+  if (modalProjectPdfViewer) modalProjectPdfViewer.classList.remove("hidden");
+  if (modalProjectPdf) {
+    modalProjectPdf.classList.add("hidden");
+    modalProjectPdf.src = "";
+  }
+
+  const PdfJs = typeof pdfjsLib !== "undefined" ? pdfjsLib : null;
+  if (!PdfJs) {
+    showPdfModalFallback(url);
+    updatePdfModalNav();
+    return;
+  }
+
+  let absoluteUrl;
+  try {
+    absoluteUrl = new URL(url, window.location.href).href;
+  } catch {
+    showPdfModalFallback(url);
+    return;
+  }
+
+  try {
+    pdfModalLoadingTask = PdfJs.getDocument({ url: absoluteUrl });
+    const doc = await pdfModalLoadingTask.promise;
+    if (myGen !== pdfModalLoadGen) return;
+    pdfModalDoc = doc;
+    pdfModalPageNum = 1;
+    pdfModalLoadingTask = null;
+    updatePdfModalNav();
+    await renderPdfModalPage(1);
+  } catch {
+    if (myGen !== pdfModalLoadGen) return;
+    pdfModalLoadingTask = null;
+    pdfModalDoc = null;
+    showPdfModalFallback(url);
+    updatePdfModalNav();
+  }
+}
+
+function goPdfModalPage(delta) {
+  if (!pdfModalDoc || pdfModalPageRendering) return;
+  const next = pdfModalPageNum + delta;
+  if (next < 1 || next > pdfModalDoc.numPages) return;
+  renderPdfModalPage(next).catch(() => {
+    /* ignore */
+  });
 }
 const imageLightbox = document.getElementById("image-lightbox");
 const imageLightboxImg = document.getElementById("image-lightbox-img");
@@ -364,31 +556,11 @@ function openProjectModal(project) {
         modalProjectPdfDownload.setAttribute("download", fileName);
       }
 
-      const useNative = isLikelyIOS();
-      modalProjectPdfWrapper.classList.toggle("project-modal-pdf--ios", useNative);
-      const showHint = pdfEmbedProblematic();
-      if (modalProjectPdfMobileHint) {
-        modalProjectPdfMobileHint.hidden = !showHint;
-      }
-      if (modalProjectPdfIosPanel) {
-        modalProjectPdfIosPanel.hidden = !useNative;
-      }
-      if (modalProjectPdfIframeWrap) {
-        modalProjectPdfIframeWrap.hidden = useNative;
-      }
-      if (useNative) {
-        modalProjectPdf.removeAttribute("src");
-        modalProjectPdf.src = "";
-      } else {
-        modalProjectPdf.src = url;
-      }
-    } else {
-      modalProjectPdfWrapper.classList.add("hidden");
-      modalProjectPdfWrapper.classList.remove("project-modal-pdf--ios");
-      modalProjectPdf.src = "";
       if (modalProjectPdfIframeWrap) modalProjectPdfIframeWrap.hidden = false;
-      if (modalProjectPdfMobileHint) modalProjectPdfMobileHint.hidden = true;
-      if (modalProjectPdfIosPanel) modalProjectPdfIosPanel.hidden = true;
+      openPdfModal(url);
+    } else {
+      resetPdfModalViewer();
+      modalProjectPdfWrapper.classList.add("hidden");
       if (modalProjectPdfOpen) modalProjectPdfOpen.removeAttribute("href");
       if (modalProjectPdfDownload) modalProjectPdfDownload.removeAttribute("href");
     }
@@ -400,6 +572,7 @@ function openProjectModal(project) {
 
 function closeProjectModal() {
   if (!projectModal) return;
+  resetPdfModalViewer();
   projectModal.classList.add("hidden");
   document.body.classList.remove("modal-open");
 }
@@ -498,9 +671,49 @@ document.addEventListener("DOMContentLoaded", () => {
       if (e.key === "Escape") {
         closeProjectModal();
         closeImageLightbox();
+        return;
+      }
+
+      if (
+        !projectModal.classList.contains("hidden") &&
+        pdfModalDoc &&
+        (e.key === "ArrowLeft" || e.key === "ArrowRight")
+      ) {
+        e.preventDefault();
+        if (e.key === "ArrowLeft") goPdfModalPage(-1);
+        else goPdfModalPage(1);
       }
     });
   }
+
+  if (typeof pdfjsLib !== "undefined") {
+    pdfjsLib.GlobalWorkerOptions.workerSrc =
+      "https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js";
+  }
+
+  if (modalPdfPrev) {
+    modalPdfPrev.addEventListener("click", (e) => {
+      e.stopPropagation();
+      goPdfModalPage(-1);
+    });
+  }
+  if (modalPdfNext) {
+    modalPdfNext.addEventListener("click", (e) => {
+      e.stopPropagation();
+      goPdfModalPage(1);
+    });
+  }
+
+  let pdfResizeTimer;
+  window.addEventListener("resize", () => {
+    if (!pdfModalDoc || !projectModal || projectModal.classList.contains("hidden")) return;
+    clearTimeout(pdfResizeTimer);
+    pdfResizeTimer = setTimeout(() => {
+      renderPdfModalPage(pdfModalPageNum).catch(() => {
+        /* ignore */
+      });
+    }, 200);
+  });
 
   if (modalProjectImage && imageLightbox) {
     modalProjectImage.style.cursor = "zoom-in";

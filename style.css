@@ -663,34 +663,90 @@ body {
   touch-action: manipulation;
 }
 
-.project-modal-pdf-mobile-hint {
-  margin: 0.4rem 0 0;
-  font-size: 0.78rem;
+.project-modal-pdf-viewer {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.project-modal-pdf-pagebar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem 1rem;
+  flex-wrap: wrap;
+  padding: 0.45rem 0.65rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(15, 23, 42, 0.65);
+}
+
+.project-pdf-nav {
+  min-width: 44px;
+  min-height: 44px;
+  padding: 0;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.75);
+  background: rgba(15, 23, 42, 0.9);
+  color: #e5e7eb;
+  font-size: 1.35rem;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  touch-action: manipulation;
+}
+
+.project-pdf-nav:hover {
+  background: rgba(15, 23, 42, 1);
+  border-color: rgba(129, 140, 248, 0.85);
+}
+
+.project-pdf-nav:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.project-pdf-page-label {
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  min-width: 7.5rem;
+  text-align: center;
+}
+
+.project-modal-pdf-canvas-wrap {
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  max-height: 68vh;
+  max-height: min(68dvh, 540px);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0.65rem 0.5rem 1rem;
+  background: #0f172a;
+}
+
+.project-modal-pdf-canvas {
+  display: block;
+  max-width: 100%;
+  height: auto !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+.project-pdf-status-outer {
+  margin: 0;
+  padding: 0.75rem 0.65rem;
+  text-align: center;
+  font-size: 0.82rem;
   line-height: 1.45;
   color: var(--muted);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.25);
 }
 
-.project-modal-pdf-ios-panel {
-  margin-top: 0.5rem;
-  padding: 1rem 1.1rem;
-  border-radius: 16px;
-  background: radial-gradient(circle at 0 0, rgba(56, 189, 248, 0.1), transparent 55%),
-    rgba(15, 23, 42, 0.95);
-  border: 1px solid rgba(129, 140, 248, 0.45);
-}
-
-.project-modal-pdf-ios-lead {
-  margin: 0 0 0.35rem;
-  font-size: 0.88rem;
-  font-weight: 600;
-  color: #e5e7eb;
-}
-
-.project-modal-pdf-ios-text {
-  margin: 0;
-  font-size: 0.8rem;
-  line-height: 1.5;
-  color: var(--muted);
+.project-modal-pdf-viewer--fallback .project-modal-pdf-pagebar,
+.project-modal-pdf-viewer--fallback .project-modal-pdf-canvas-wrap {
+  display: none;
 }
 
 .project-modal-pdf-wrapper-inner {
@@ -706,20 +762,16 @@ body {
   display: none !important;
 }
 
-.project-modal-pdf-ios-panel[hidden] {
-  display: none !important;
-}
-
-.project-modal-pdf-mobile-hint[hidden] {
-  display: none !important;
-}
-
-.project-modal-pdf {
+.project-modal-pdf-fallback {
   width: 100%;
   height: 480px;
   border: none;
   display: block;
-  background: #0f172a;
+  background: #f8fafc;
+}
+
+.project-modal-pdf-fallback.hidden {
+  display: none !important;
 }
 
 .project-modal-image-wrapper {
@@ -918,7 +970,11 @@ body.modal-open {
     min-height: min(52dvh, 320px);
   }
 
-  .project-modal-pdf {
+  .project-modal-pdf-canvas-wrap {
+    max-height: min(62dvh, 520px);
+  }
+
+  .project-modal-pdf-fallback:not(.hidden) {
     height: 68vh;
     height: min(68dvh, 560px);
     min-height: 260px;

@@ -149,7 +149,7 @@
       <div id="modal-project-pdf-wrapper" class="project-modal-pdf-section hidden">
         <h3 class="project-modal-pdf-title">PDF Dokümanı</h3>
         <p class="project-modal-pdf-note">
-          Proje ile ilgili detaylı rapor, döküman veya çıktı dosyasını aşağıdaki alanda inceleyebilirsin.
+          Aşağıda tüm sayfaları okuyabilirsin; dar ekranda genişliğe sığacak şekilde ölçeklenir. Sayfalar arası geçiş için okları kullan.
         </p>
         <div class="project-modal-pdf-toolbar" id="modal-project-pdf-toolbar">
           <a
@@ -166,19 +166,25 @@
             download
           >İndir</a>
         </div>
-        <p class="project-modal-pdf-mobile-hint" id="modal-project-pdf-mobile-hint" hidden>
-          Bu cihazda önizleme sınırlı olabilir. PDF’yi tam ekran ve kaydırmalı görmek için «Yeni sekmede aç» veya «İndir» kullan.
-        </p>
-        <div class="project-modal-pdf-ios-panel" id="modal-project-pdf-ios-panel" hidden>
-          <p class="project-modal-pdf-ios-lead">Bu cihazda PDF genelde sayfa içinde açılmaz.</p>
-          <p class="project-modal-pdf-ios-text">
-            Tam ekran görüntüleyici için «Yeni sekmede aç»a dokunun; çevrimdışı okumak için «İndir» kullanabilirsin.
-          </p>
-        </div>
         <div class="project-modal-pdf-wrapper-inner" id="modal-project-pdf-iframe-wrap">
+          <p id="modal-pdf-status" class="project-pdf-status project-pdf-status-outer hidden" aria-live="polite"></p>
+          <div id="modal-project-pdf-viewer" class="project-modal-pdf-viewer">
+            <div class="project-modal-pdf-pagebar">
+              <button type="button" id="modal-pdf-prev" class="project-pdf-nav" aria-label="Önceki sayfa">
+                ‹
+              </button>
+              <span id="modal-pdf-page-label" class="project-pdf-page-label">—</span>
+              <button type="button" id="modal-pdf-next" class="project-pdf-nav" aria-label="Sonraki sayfa">
+                ›
+              </button>
+            </div>
+            <div class="project-modal-pdf-canvas-wrap" id="modal-project-pdf-canvas-wrap">
+              <canvas id="modal-project-pdf-canvas" class="project-modal-pdf-canvas hidden" aria-label="PDF sayfa önizlemesi"></canvas>
+            </div>
+          </div>
           <iframe
             id="modal-project-pdf"
-            class="project-modal-pdf"
+            class="project-modal-pdf project-modal-pdf-fallback hidden"
             src=""
             title="Proje PDF önizlemesi"
             scrolling="yes"
@@ -197,6 +203,7 @@
     </div>
   </div>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
   <script src="script.js"></script>
 </body>
 </html>
