@@ -1,8 +1,3 @@
-// Mobil cihaz tespiti
-function isMobileDevice() {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-}
-
 const projects = [
   {
     title: "Excel Satış Dasboard projesi",
@@ -346,18 +341,9 @@ function openProjectModal(project) {
     if (project.pdfUrl && project.pdfUrl.trim() !== "") {
       modalProjectPdf.src = project.pdfUrl;
       modalProjectPdfWrapper.classList.remove("hidden");
-      const downloadLink = document.getElementById("modal-project-pdf-download");
-      if (downloadLink) {
-        downloadLink.href = project.pdfUrl;
-        downloadLink.style.display = "block"; // Her zaman göster, indirme seçeneği olarak
-      }
     } else {
       modalProjectPdfWrapper.classList.add("hidden");
       modalProjectPdf.src = "";
-      const downloadLink = document.getElementById("modal-project-pdf-download");
-      if (downloadLink) {
-        downloadLink.style.display = "none";
-      }
     }
   }
 
