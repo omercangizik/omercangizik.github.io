@@ -339,7 +339,7 @@ function openProjectModal(project) {
 
   if (modalProjectPdfWrapper && modalProjectPdf) {
     if (project.pdfUrl && project.pdfUrl.trim() !== "") {
-      modalProjectPdf.src = "https://docs.google.com/viewer?url=" + encodeURIComponent(project.pdfUrl) + "&embedded=true";
+      modalProjectPdf.src = project.pdfUrl;
       modalProjectPdfWrapper.classList.remove("hidden");
     } else {
       modalProjectPdfWrapper.classList.add("hidden");
