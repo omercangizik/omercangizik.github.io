@@ -160,6 +160,24 @@ const projects = [
     featured: true,
   },
 
+    {
+    title: "Excel ile Veri Analizi",
+    description:
+    "Bu proje, bir telekomünikasyon şirketine ait müşteri verileri kullanılarak müşteri kaybını (churn) etkileyen faktörlerin belirlenmesi amacıyla hazırlanmıştır. Çalışma Microsoft Excel ortamında gerçekleştirilmiş olup veri temizleme, dönüştürme ve analiz adımlarını içermektedir. Veri seti üzerinde eksik veriler giderilmiş, gerekli düzenlemeler yapılmış ve müşteriler tenure, harcama ve churn skoru gibi kriterlere göre segmentlere ayrılmıştır. Pivot Table, grafikler ve Excel formülleri kullanılarak yapılan analizler sonucunda müşteri kaybının sözleşme türü, müşteri süresi, ödeme yöntemi ve hizmet kullanımı gibi değşkenlerle ilişkisi incelenmiştir. Elde edilen bulgular doğrultusunda, müşteri kaybını azaltmaya yönelik veri odaklı öneriler geliştirilmiştir. Bu proje, Excel kullanılarak temel veri analizi süreçlerinin uygulanabileceğini göstermektedir.",
+    type: "frontend",
+    tech: ["Microsoft Excel"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: "",
+    pdfUrl: "pdfler/excel_veri_analizi.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
   {
     title: "Excel ile Veri Analizi",
     description:
