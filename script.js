@@ -187,7 +187,7 @@ const projects = [
     liveUrl: "#",
     githubUrl: "#",
     imageUrl: "",
-    pdfUrl: "pdfler/uber_sql_analizleri.pdf",
+    pdfUrl: "pdfler/uber_sql_sorgular.pdf",
     code: `<!-- Örnek: Proje kartı HTML yapısı -->
 <article class="project-card">
   <h3>Modern Portfolyo Sitesi</h3>
