@@ -177,6 +177,24 @@ const projects = [
 </article>`,
     featured: true,
   },
+
+  {
+    title: "Uber Veri Seti Üzerinde SQL Analizlerim",
+    description:
+    "Bu projede, bir ulaşım platformunun (Uber örneği üzerinden) veri mimarisini analiz ettim ve MS SQL kullanarak operasyonel verilerden stratejik iş içgörüleri çıkardım. Sistemdeki kullanıcı yönetimi, sürücü performansları, yolculuk trendleri ve finansal raporlama süreçlerini kapsayan toplam 39 adet karmaşık SQL sorgusu kurguladım ve uyguladım",
+    type: "frontend",
+    tech: [" MS SQL, SQL Server Management Studio"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: "",
+    pdfUrl: "pdfler/uber_sql_analizleri.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
 ];
 
 
