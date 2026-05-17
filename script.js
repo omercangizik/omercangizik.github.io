@@ -195,6 +195,24 @@ const projects = [
 </article>`,
     featured: true,
   },
+
+  {
+    title: "Bilişsel Performans Tahmini için Makine Öğrenmesi Tabanlı Veri Analizi Projesi",
+    description:
+    "Kaggle platformunda düzenlenen Google Datathon yarışması kapsamında, grup çalışması olarak geliştirilen bu projede kullanıcıların uyku düzeni, stres seviyesi, yaşam tarzı ve sağlık verileri kullanılarak bilişsel performans skoru tahmini yapılmıştır. Projede veri analizi, veri ön işleme, feature engineering, model optimizasyonu ve ensemble learning yöntemleri uygulanmıştır. CatBoost, LightGBM ve XGBoost gibi gelişmiş makine öğrenmesi algoritmalarından yararlanılmıştır. Ayrıca SHAP analizi ve hiperparametre optimizasyonu ile model performansı ve yorumlanabilirliği artırılmış, yarışma odaklı kapsamlı bir veri bilimi pipeline’ı oluşturulmuştur.",
+    type: "frontend",
+    tech: ["Python, Machine Learning, Veri Analizi, SHAP, Hiperparametre Optimizasyonu, Grup Çalışması"],
+    liveUrl: "#",
+    githubUrl: "https://github.com/omercangizik/google-datathon/blob/344ba6cd96946cbf9046483f56d3d18ee3923a0a/google_datathon.ipynb",
+    imageUrl: "",
+    pdfUrl: "pdfler/google_datathon - Colab.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
 ];
 
 
