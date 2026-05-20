@@ -213,6 +213,26 @@ const projects = [
 </article>`,
     featured: true,
   },
+
+
+  {
+    title: "Satış ve Kârlılık Performans Dashboardu",
+    description:
+    "Bu Power BI dashboard projesinde satış verileri analiz edilerek işletmenin genel performansı görselleştirilmiştir. KPI göstergeleri ile satış, kâr ve sipariş durumu özetlenmiş; zaman, bölge, müşteri segmenti ve ürün bazlı analizlerle detaylı içgörüler sunulmuştur. Ayrıca indirim ve kâr ilişkisi incelenerek stratejik değerlendirmeler yapılmıştır. Dashboard, filtreleme seçenekleri sayesinde kullanıcıya interaktif bir analiz imkânı sağlamaktadır.",
+    type: "frontend",
+    tech: ["Power BI, veri analizi, veri görselleştirme"],
+    liveUrl: "#",
+    githubUrl: "",
+    imageUrl: "gorseller/satis dashboard.png",
+    pdfUrl: "pdfler/google_datathon - Colab.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  }, 
+
 ];
 
 
