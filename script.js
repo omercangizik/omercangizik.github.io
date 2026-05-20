@@ -224,7 +224,7 @@ const projects = [
     liveUrl: "#",
     githubUrl: "",
     imageUrl: "gorseller/satis dashboard.png",
-    pdfUrl: "pdfler/google_datathon - Colab.pdf",
+    pdfUrl: "",
     code: `<!-- Örnek: Proje kartı HTML yapısı -->
 <article class="project-card">
   <h3>Modern Portfolyo Sitesi</h3>
