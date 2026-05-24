@@ -110,7 +110,11 @@ const projects = [
     tech: ["Power BI, DAX, Veri Analizi, Veri Görselleştirme"],
     liveUrl: "#",
     githubUrl: "#",
-    imageUrl: ["gorseller/ik_1.png","gorseller/ik_2.png","gorseller/ik_3.png"],
+    images: [
+      "gorseller/ik_1.png",
+      "gorseller/ik_2.png",
+      "gorseller/ik_3.png",
+    ],
     pdfUrl: "pdfler/ik_dashboard.pdf",
     code: `<!-- Örnek: Proje kartı HTML yapısı -->
 <article class="project-card">
@@ -667,7 +671,11 @@ function getProjectImages() {
     return currentProject.images;
   }
 
-  if (currentProject.imageUrl && currentProject.imageUrl.trim() !== "") {
+  if (Array.isArray(currentProject.imageUrl) && currentProject.imageUrl.length > 0) {
+    return currentProject.imageUrl;
+  }
+
+  if (typeof currentProject.imageUrl === "string" && currentProject.imageUrl.trim() !== "") {
     return [currentProject.imageUrl];
   }
 
