@@ -103,6 +103,26 @@ const projects = [
 
 
   {
+    title: "İnsan Kaynakları Dashboard'u",
+    description:
+    "Veriye dayalı insan kaynakları yönetimini desteklemek amacıyla geliştirdiğim bu İK Analitiği Kontrol Paneli (HR Dashboard), iş gücü dinamiklerini stratejik bir yaklaşımla ele almaktadır. Proje; Yönetici Paneli, Çalışan Profili ve İşten Ayrılma (Attrition) Analizi olmak üzere 3 temel sayfadan oluşmakta; demografik dağılımları, çalışan bağlılığını ve işten ayrılma eğilimlerini derinlemesine incelemektedir. Ham İK verilerini temizleyip modelledikten sonra, organizasyonel yapıyı optimize edecek ve kritik dönüşleri hızlandıracak dinamik filtreler ve gelişmiş DAX metrikleri oluşturdum.",
+    type: "frontend",
+    tech: ["Power BI, DAX, Veri Analizi, Veri Görselleştirme"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: ["gorseller/ik_1.png","gorseller/ik_2.png","gorseller/ik_3.png"],
+    pdfUrl: "pdfler/ik_dashboard.pdf",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
+
+
+  {
     title: "Aykırı Değer Analizi",
     description:
     "Bu çalışmada su kalitesi verileri kullanılarak aykırı gözlem analizi yapılmıştır. Veri seti Python, Pandas ve Seaborn kütüphaneleri kullanılarak incelenmiş ve özellikle Turbidity (bulanıklık) değişkeni üzerinden aykırı değerler tespit edilmiştir. Aykırı değerleri belirlemek için IQR yöntemi ve Local Outlier Factor (LOF) algoritması kullanılmıştır. Tespit edilen aykırı değerler ise silme, ortalama ile doldurma ve baskılama yöntemleri gibi farklı tekniklerle düzeltilmiştir.",
