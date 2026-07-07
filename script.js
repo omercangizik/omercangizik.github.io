@@ -185,6 +185,24 @@ const projects = [
   },
 
   {
+    title: "n8n ile Yapay Zekâ Destekli Akıllı Asistan",
+    description:
+    "Bu n8n projesi, Telegram üzerinden çalışan yapay zekâ destekli bir kişisel asistandır. Kullanıcıdan gelen metin veya sesli mesajları işleyerek Gemini modeli ile analiz eder, konuşma geçmişini hafızasında tutar ve gerektiğinde Gmail ile e-posta okuma/gönderme, Google Calendar üzerinden etkinlik görüntüleme ve oluşturma gibi işlemleri otomatik olarak gerçekleştirir. İşlem tamamlandıktan sonra oluşturulan yanıtı tekrar Telegram üzerinden kullanıcıya ileterek tüm süreci tek bir sohbet ekranından yönetmeyi sağlar.",
+    type: "frontend",
+    tech: ["n8n, Gemini, Telegram, Gmail, Google Calendar"],
+    liveUrl: "#",
+    githubUrl: "#",
+    imageUrl: "gorseller/n8n.png",
+    pdfUrl: "",
+    code: `<!-- Örnek: Proje kartı HTML yapısı -->
+<article class="project-card">
+  <h3>Modern Portfolyo Sitesi</h3>
+  <p>Kısa açıklama...</p>
+</article>`,
+    featured: true,
+  },
+
+  {
     title: "Excel ile Müşteri Kaybı Veri Analizi",
     description:
     "Bu proje, bir telekomünikasyon şirketine ait müşteri verileri kullanılarak müşteri kaybını (churn) etkileyen faktörlerin belirlenmesi amacıyla hazırlanmıştır. Çalışma Microsoft Excel ortamında gerçekleştirilmiş olup veri temizleme, dönüştürme ve analiz adımlarını içermektedir. Veri seti üzerinde eksik veriler giderilmiş, gerekli düzenlemeler yapılmış ve müşteriler tenure, harcama ve churn skoru gibi kriterlere göre segmentlere ayrılmıştır. Pivot Table, grafikler ve Excel formülleri kullanılarak yapılan analizler sonucunda müşteri kaybının sözleşme türü, müşteri süresi, ödeme yöntemi ve hizmet kullanımı gibi değşkenlerle ilişkisi incelenmiştir. Elde edilen bulgular doğrultusunda, müşteri kaybını azaltmaya yönelik veri odaklı öneriler geliştirilmiştir. Bu proje, Excel kullanılarak temel veri analizi süreçlerinin uygulanabileceğini göstermektedir.",
